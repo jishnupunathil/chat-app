@@ -1,12 +1,14 @@
-const express=require('express')
-
+import express from 'express'
+import dotenv from 'dotenv'
+import authRouter from './routes/auth.js'
 const app=express()
 
+dotenv.config()
+const PORT=process.env.PORT || 5000
 
-app.get('/',(req,res)=>{
-    res.send('helloss world')
-})
+app.use('/api/auth',authRouter)
 
-app.listen(5000,()=>{
-    console.log('server connected to port 5000')
+
+app.listen(PORT,()=>{
+    console.log(`server connected to port ${PORT}`)
 })
