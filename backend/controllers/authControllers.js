@@ -1,6 +1,5 @@
-export const signup=(req,res)=>{
-    res.send('signup route')
-    console.log('signupRoute');
+export const signup=async(req,res)=>{
+    const { fullName, username, password, confirmPassword, gender } = req.body;
 }
 
 export const login=(req,res)=>{
