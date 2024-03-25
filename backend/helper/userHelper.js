@@ -1,4 +1,5 @@
 import User from "../models/userModel.js";
+import generateTokenAndSetCookie from "../utils/generateToken.js";
 
 export const findUser=(userName)=>{
     try{
@@ -9,7 +10,7 @@ export const findUser=(userName)=>{
 	}
 }
 
-export const saveUser=async(userDetails,hashedpassword,boyProfilePic,girlProfilePic)=>{
+export const createUser=async(userDetails,hashedpassword,boyProfilePic,girlProfilePic)=>{
     try{
         const { fullName, userName, gender } = userDetails;
      
@@ -20,8 +21,8 @@ export const saveUser=async(userDetails,hashedpassword,boyProfilePic,girlProfile
 			gender,
 			profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
 		});
-        const savedUser=await newUser.save();
-        return savedUser
+        
+        return newUser
         
     }catch (error) {
 		console.log("Error saving user", error.message);
