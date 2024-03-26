@@ -1,11 +1,11 @@
 import Conversation from "../models/conversation.js";
 
-export const findConversation=async(senderId,receiverId)=>{
+export const findConversation=async(senderId,receiverId) => {
     try{
 
         const conversation=await Conversation.findOne({
             participents:{$all:[senderId,receiverId]}
-        })
+        }).populate("messages")
 
         return conversation
 

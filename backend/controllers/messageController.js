@@ -1,4 +1,4 @@
-import { createConversation, findConversation } from "../helper/conversationControler.js";
+import { createConversation, findConversation} from "../helper/conversationControler.js";
 import { createMessage } from "../helper/messageHelper.js";
 
 export const sendMessage=async(req,res)=>{
@@ -31,6 +31,29 @@ export const sendMessage=async(req,res)=>{
     res.status(200).json(newMessage)
 }catch (error) {
         console.log("Error in sendMessage controller", error.message);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+       
+}
+
+
+export const getMessages=async(req,res)=>{
+    try{
+
+        const { id: userToChatId } = req.params;
+		const senderId = req.user._id;
+
+
+        const conversation=await findConversation(senderId,userToChatId)
+
+        if(!conversation) return res.status(404).json({error:"No conversation found"})
+
+        res.status(200).json(conversation.messages)
+
+
+
+    }catch (error) {
+        console.log("Error in getMessage controller", error.message);
         res.status(500).json({ error: "Internal Server Error" });
       }
        
