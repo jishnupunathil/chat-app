@@ -1,12 +1,20 @@
 import User from "../models/userModel.js";
-import generateTokenAndSetCookie from "../utils/generateToken.js";
 
 export const findUser=(userName)=>{
     try{
         const user=User.findOne({userName})
         return user
     }catch (error) {
-		console.log("Error finding user", error.message);
+		console.log("Error in findUser helper", error.message);
+	}
+}
+
+export const findUserById=(userId)=>{
+    try{
+        const user=User.findById(userId)
+        return user
+    }catch (error) {
+		console.log("Error in findUserById helper", error.message);
 	}
 }
 
@@ -25,6 +33,6 @@ export const createUser=async(userDetails,hashedpassword,boyProfilePic,girlProfi
         return newUser
         
     }catch (error) {
-		console.log("Error saving user", error.message);
+		console.log("Error in createUser helper", error.message);
 	}
 }
