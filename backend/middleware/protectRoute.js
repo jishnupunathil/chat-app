@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 import { findUserById } from "../helper/userHelper.js";
 
 const protectRoute = async (req, res, next) => {
-    console.log('0000000000000');
   try {
     const token = req.cookies.jwt;
 

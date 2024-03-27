@@ -36,3 +36,13 @@ export const createUser=async(userDetails,hashedpassword,boyProfilePic,girlProfi
 		console.log("Error in createUser helper", error.message);
 	}
 }
+
+
+export const findFilteredUser=(userName)=>{
+    try{
+        const filteredUser=User.find({_id:{ $ne:userName }}).select({fullName:1,userName:1,gender:1,profilePic:1,_id:0})
+        return filteredUser
+    }catch (error) {
+		console.log("Error in findFilteredUser helper", error.message);
+	}
+}

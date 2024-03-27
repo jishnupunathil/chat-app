@@ -17,7 +17,6 @@ export const sendMessage=async(req,res)=>{
 
     const newMessage=await createMessage(senderId,receiverId,message)
 
-    console.log("🚀 ~ sendMessage ~ conversation:", conversation)
 
     if(newMessage) conversation.messages.push(newMessage._id)
 
@@ -48,9 +47,9 @@ export const getMessages=async(req,res)=>{
 
         if(!conversation) return res.status(404).json({error:"No conversation found"})
 
-        res.status(200).json(conversation.messages)
+        const messages=conversation.messages
 
-
+        res.status(200).json(messages)
 
     }catch (error) {
         console.log("Error in getMessage controller", error.message);
